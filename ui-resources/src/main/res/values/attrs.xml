@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="iconColor" format="color" />
+    <attr name="secondaryErrorColor" format="color" />
+    <attr name="secondaryStrokeColor" format="color" />
+</resources>

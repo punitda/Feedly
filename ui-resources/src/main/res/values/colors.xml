@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme Colors. -->
+    <color name="feedly_teal_500">#008381</color>
+    <color name="feedly_teal_700">#005958</color>
+    <color name="feedly_teal_300">#9DCDC3</color>
+    <color name="feedly_yellow">#FFC600</color>
+
+    <!-- Text and Surface Colors. -->
+    <color name="feedly_white">#FFFFFF</color>
+    <color name="feedly_black">#000000</color>
+    <color name="feedly_red">#E71E1F</color>
+    <color name="feedly_dark_gray">#5E5E5E</color>
+    <color name="feedly_light_gray">#F5F5F5</color>
+    <color name="feedly_cream">#F2EFEA</color>
+    <color name="feedly_black_500">#3A2A1C</color>
+    <color name="feedly_gray_300">#757575</color>
+    <color name="feedly_dark_red">#BA0000</color>
+    <color name="feedly_salmon">#FE6D6A</color>
+    <color name="feedly_gray_100">#CCCCCC</color>
+
+    <!--icon colors-->
+    <color name="feedly_dark_cyan">#079D9B</color>
+    <color name="feedly_neon">#63dc3b</color>
+</resources>

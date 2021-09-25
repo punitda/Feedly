@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Feedly.BorderlessButton" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/outline_button_stroke_selector</item>
+        <item name="strokeWidth">@dimen/grid_0_5</item>
+    </style>
+
+    <style name="Widget.Feedly.Button" parent="@style/Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/feedly_btn_bg_color_selector</item>
+        <item name="android:textColor">@color/feedly_btn_text_color_selector</item>
+    </style>
+
+    <style name="Widget.Feedly.RoundedEditText" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearance">@style/ShapeAppearance.Feedly.LargeComponent</item>
+        <item name="strokeColor">@android:color/transparent</item>
+        <item name="hintTextAppearance">?attr/textAppearanceBody2</item>
+    </style>
+
+    <style name="Widget.Feedly.RoundedImageView" parent="ShapeAppearance.Feedly.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Widget.Feedly.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+    </style>
+
+    <style name="Widget.Feedly.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.RadioButton</item>
+    </style>
+
+    <style name="Widget.Feedly.Checkbox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Checkbox</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Switch" parent="">
+        <item name="colorOnSurface">@color/feedly_teal_300</item>
+        <item name="colorSecondary">@color/feedly_teal_500</item>
+    </style>
+
+    <style name="ThemeOverlay.App.RadioButton" parent="">
+        <item name="colorOnSurface">@color/feedly_teal_300</item>
+        <item name="colorSecondary">@color/feedly_teal_500</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Checkbox" parent="">
+        <item name="colorOnSurface">@color/feedly_teal_300</item>
+        <item name="colorSecondary">@color/feedly_teal_500</item>
+    </style>
+
+    <style name="Widget.Feedly.BottomRoundedImageView" parent="ShapeAppearance.Feedly.MediumComponent">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomLeft">@dimen/grid_2</item>
+        <item name="cornerSizeBottomRight">@dimen/grid_2</item>
+    </style>
+
+    <style name="Widget.Feedly.LeftRoundedImageView" parent="ShapeAppearance.Feedly.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/grid_2</item>
+        <item name="cornerSizeBottomLeft">@dimen/grid_2</item>
+        <item name="cornerSizeTopRight">@dimen/grid_0</item>
+        <item name="cornerSizeBottomRight">@dimen/grid_0</item>
+    </style>
+
+</resources>

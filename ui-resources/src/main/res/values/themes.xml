@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Feedly" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/feedly_teal_500</item>
+        <item name="colorPrimaryVariant">@color/feedly_teal_500</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/feedly_teal_300</item>
+        <item name="colorSecondaryVariant">@color/feedly_teal_700</item>
+
+        <!-- Surface, Background and Error Colors-->
+        <item name="android:colorBackground">@color/feedly_white</item>
+        <item name="colorSurface">@color/feedly_white</item>
+        <item name="colorError">@color/feedly_red</item>
+        <item name="secondaryErrorColor">@color/feedly_dark_red</item>
+        <item name="secondaryStrokeColor">@color/feedly_salmon</item>
+
+        <!--icons colors-->
+        <item name="iconColor">@color/feedly_dark_cyan</item>
+
+        <!-- "On" text colors -->
+        <item name="colorOnPrimary">@color/feedly_white</item>
+        <item name="colorOnSecondary">@color/feedly_black</item>
+        <item name="colorOnBackground">@color/feedly_black_500</item>
+        <item name="colorOnSurface">@color/feedly_black_500</item>
+        <item name="colorOnError">@color/feedly_white</item>
+        <item name="colorBackgroundFloating">@color/feedly_cream</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <!-- Material Type Attrs. -->
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Feedly.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Feedly.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Feedly.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Feedly.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.Feedly.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Feedly.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Feedly.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Feedly.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Feedly.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.Feedly.Overline</item>
+
+        <item name="materialButtonOutlinedStyle">@style/Widget.Feedly.BorderlessButton</item>
+        <item name="materialButtonStyle">@style/Widget.Feedly.Button</item>
+
+        <!--Material shape attributes-->
+        <item name="shapeAppearanceSmallComponent">
+            @style/ShapeAppearance.Feedly.SmallComponent
+        </item>
+        <item name="shapeAppearanceMediumComponent">
+            @style/ShapeAppearance.Feedly.MediumComponent
+        </item>
+        <item name="shapeAppearanceLargeComponent">
+            @style/ShapeAppearance.Feedly.LargeComponent
+        </item>
+
+    </style>
+
+</resources>
