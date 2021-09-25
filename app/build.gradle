@@ -71,7 +71,7 @@ dependencies {
   implementation project(":base-android")
 
   implementation project(":features:feed")
-  implementation project(":features:bookmark")
+  implementation project(":features:bookmarks")
   implementation project(":features:feed")
 
   implementation Libs.Kotlin.stdlib
