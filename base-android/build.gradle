@@ -1,6 +1,7 @@
 apply from: "$rootProject.projectDir/android-library.gradle"
 
 dependencies {
+    implementation Libs.AndroidX.appCompat
     implementation Libs.AndroidX.Lifecycle.common
     implementation Libs.AndroidX.Lifecycle.runtime
 }
