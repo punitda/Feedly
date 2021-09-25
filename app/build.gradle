@@ -69,6 +69,11 @@ android {
 dependencies {
   implementation project(":ui-resources")
   implementation project(":base-android")
+
+  implementation project(":features:feed")
+  implementation project(":features:bookmark")
+  implementation project(":features:feed")
+
   implementation Libs.Kotlin.stdlib
 
   implementation Libs.AndroidX.coreKtx
