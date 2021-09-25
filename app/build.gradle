@@ -1,0 +1,86 @@
+plugins {
+  id 'com.android.application'
+  id 'kotlin-android'
+  id 'kotlin-kapt'
+  id 'dagger.hilt.android.plugin'
+}
+
+android {
+  compileSdkVersion buildConfig.compileSdk
+  buildToolsVersion buildConfig.toolsVersion
+
+  defaultConfig {
+    applicationId "dev.punitd.feedly"
+    minSdkVersion buildConfig.minSdk
+    targetSdkVersion buildConfig.targetSdk
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      signingConfig signingConfigs.debug
+    }
+
+    debug {
+      applicationIdSuffix ".debug"
+      debuggable true
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions {
+    jvmTarget = '1.8'
+  }
+
+  buildFeatures {
+    viewBinding true
+  }
+
+  hilt {
+    enableExperimentalClasspathAggregation = true
+  }
+
+  lintOptions {
+    checkReleaseBuilds false
+  }
+
+  // Epoxy Configuration
+  buildTypes.all { buildType ->
+    buildType.javaCompileOptions.annotationProcessorOptions.arguments =
+        [
+            // Validation is disabled in release builds to remove the runtime overhead
+            validateEpoxyModelUsage      : String.valueOf(buildType.name == 'debug'),
+            requireHashCodeInEpoxyModels : "true",
+            requireAbstractEpoxyModels   : "true",
+            implicitlyAddAutoModels      : "false"
+        ]
+  }
+}
+
+dependencies {
+  implementation Libs.Kotlin.stdlib
+
+  implementation Libs.AndroidX.coreKtx
+  implementation Libs.AndroidX.appCompat
+  implementation Libs.AndroidX.constraintLayout
+  implementation Libs.Google.material
+
+  implementation Libs.AndroidX.Navigation.ui
+  implementation Libs.AndroidX.Navigation.runtime
+
+  implementation Libs.AndroidX.Hilt.library
+  kapt Libs.AndroidX.Hilt.compiler
+
+  testImplementation Libs.Testing.junit
+  androidTestImplementation Libs.AndroidX.Test.junit
+  androidTestImplementation Libs.AndroidX.Test.espresso
+}
