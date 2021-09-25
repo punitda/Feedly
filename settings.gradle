@@ -1,3 +1,4 @@
 rootProject.name = "Feedly"
 include ':app'
 include ':ui-resources'
+include ':base-android'
