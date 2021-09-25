@@ -68,6 +68,7 @@ android {
 
 dependencies {
   implementation project(":ui-resources")
+  implementation project(":base-android")
   implementation Libs.Kotlin.stdlib
 
   implementation Libs.AndroidX.coreKtx
