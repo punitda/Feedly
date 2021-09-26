@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/feed_graph"
+        android:icon="@drawable/ic_feed"
+        android:title="@string/feed_screen_name" />
+    <item
+        android:id="@+id/bookmarks_graph"
+        android:icon="@drawable/ic_bookmarks"
+        android:title="@string/bookmarks_screen_name" />
+    <item
+        android:id="@+id/settings_graph"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings_screen_name" />
+
+</menu>
