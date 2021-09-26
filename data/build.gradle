@@ -1,0 +1,6 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+apply plugin : "kotlin-parcelize"
+
+dependencies {
+    implementation Libs.Kotlin.stdlib
+}
