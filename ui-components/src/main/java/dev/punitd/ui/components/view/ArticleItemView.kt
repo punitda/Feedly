@@ -2,6 +2,7 @@ package dev.punitd.ui.components.view
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
@@ -26,6 +27,12 @@ abstract class ArticleItemView : EpoxyModelWithHolder<ArticleItemHolder>() {
 
     override fun bind(holder: ArticleItemHolder) {
         holder.binding.apply {
+            article.imageUrl?.let {
+                articleImage.visibility = View.VISIBLE
+                articleImage.load(it)
+            } ?: run {
+                articleImage.visibility = View.GONE
+            }
             articleTitle.text = article.title
             authorName.text = article.author
             pubDate.text = article.pubDate
