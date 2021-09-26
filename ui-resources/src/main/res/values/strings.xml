@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Feedly</string>
+
+    <!-- Screen names -->
+    <string name="feed_screen_name">Feed</string>
+    <string name="bookmarks_screen_name">Bookmarks</string>
+    <string name="settings_screen_name">Settings</string>
 </resources>
