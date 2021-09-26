@@ -1,0 +1,26 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+apply plugin : 'kotlin-kapt'
+apply plugin : 'dagger.hilt.android.plugin'
+
+kapt {
+    correctErrorTypes true
+}
+
+android {
+    hilt {
+        enableExperimentalClasspathAggregation = true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    implementation Libs.Kotlin.stdlib
+
+    implementation Libs.Coroutines.core
+
+    implementation Libs.AndroidX.Hilt.library
+    kapt Libs.AndroidX.Hilt.compiler
+}
