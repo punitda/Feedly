@@ -56,10 +56,10 @@
         <item name="cornerSizeBottomRight">@dimen/grid_2</item>
     </style>
 
-    <style name="Widget.Feedly.LeftRoundedImageView" parent="ShapeAppearance.Feedly.MediumComponent">
-        <item name="cornerFamily">rounded</item>
+    <style name="Widget.Feedly.CornerCutImageView" parent="ShapeAppearance.Feedly.MediumComponent">
+        <item name="cornerFamily">cut</item>
         <item name="cornerSizeTopLeft">@dimen/grid_2</item>
-        <item name="cornerSizeBottomLeft">@dimen/grid_2</item>
+        <item name="cornerSizeBottomLeft">@dimen/grid_0</item>
         <item name="cornerSizeTopRight">@dimen/grid_0</item>
         <item name="cornerSizeBottomRight">@dimen/grid_0</item>
     </style>
