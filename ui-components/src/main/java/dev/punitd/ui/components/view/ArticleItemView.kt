@@ -2,7 +2,11 @@ package dev.punitd.ui.components.view
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.airbnb.epoxy.*
+import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyHolder
+import com.airbnb.epoxy.EpoxyModelClass
+import com.airbnb.epoxy.EpoxyModelWithHolder
+import com.airbnb.epoxy.SimpleEpoxyController
 import dev.punitd.data.Article
 import dev.punitd.ui.components.R
 import dev.punitd.ui.components.databinding.ViewArticleItemBinding
