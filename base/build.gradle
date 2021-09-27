@@ -1,0 +1,6 @@
+apply from: "$rootProject.projectDir/kotlin-library.gradle"
+
+dependencies {
+    implementation Libs.Kotlin.stdlib
+}
+
