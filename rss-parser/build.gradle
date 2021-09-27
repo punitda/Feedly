@@ -17,10 +17,15 @@ android {
 }
 
 dependencies {
+    implementation project(":base")
+    implementation project(":data")
+
     implementation Libs.Kotlin.stdlib
 
     implementation Libs.Coroutines.core
 
     implementation Libs.AndroidX.Hilt.library
     kapt Libs.AndroidX.Hilt.compiler
+
+    implementation Libs.RssParser.library
 }
