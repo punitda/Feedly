@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/grid_4">
+
+    <TextView
+        android:id="@+id/channel_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textColor="?attr/colorOnBackground"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="The Economist - Medium" />
+
+    <TextView
+        android:id="@+id/channel_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/grid_2"
+        android:textAppearance="@style/TextAppearance.Feedly.Body1"
+        app:layout_constraintLeft_toLeftOf="@+id/channel_title"
+        app:layout_constraintTop_toBottomOf="@+id/channel_title"
+        tools:text="Insight and opinion on international news, politics, business, finance, science, technology, books and arts - Medium" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
