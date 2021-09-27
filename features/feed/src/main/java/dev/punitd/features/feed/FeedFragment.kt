@@ -38,7 +38,7 @@ class FeedFragment : Fragment() {
     }
 
     private fun setUpUI() {
-        binding.articlesRv.apply {
+        binding.rv.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = controller.adapter
         }
