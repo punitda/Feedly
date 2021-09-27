@@ -5,6 +5,7 @@ data class Channel(
     val link: String,
     val description: String? = null,
     val image: Image? = null,
+    val articles: List<Article> = emptyList(),
 ) {
     data class Image(
         val title: String,
