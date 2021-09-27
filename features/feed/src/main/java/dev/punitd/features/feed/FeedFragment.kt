@@ -56,7 +56,7 @@ class FeedFragment : Fragment() {
                     }
                     is FeedViewState.Success -> {
                         binding.loader.visibility = View.GONE
-                        controller.setData(state.articles)
+                        controller.setData(state.channel)
                     }
                 }
             }

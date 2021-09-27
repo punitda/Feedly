@@ -32,7 +32,7 @@ class FeedViewModel @Inject constructor(
                 }
                 is Success -> {
                     setState {
-                        FeedViewState.Success(result.data.articles)
+                        FeedViewState.Success(result.data)
                     }
                 }
             }
