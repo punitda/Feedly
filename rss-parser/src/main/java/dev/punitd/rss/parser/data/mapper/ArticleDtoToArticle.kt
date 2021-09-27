@@ -5,6 +5,9 @@ import dev.punitd.base.Mapper
 import dev.punitd.base.data.Error
 import dev.punitd.base.data.Result
 import dev.punitd.base.data.Success
+import dev.punitd.base.util.convertDate
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 class ArticleDtoToArticle @Inject constructor() :
@@ -12,6 +15,8 @@ class ArticleDtoToArticle @Inject constructor() :
 
     @Suppress("ComplexMethod")
     override suspend fun map(from: Result<Channel>): Result<dev.punitd.data.Channel> {
+        val inputFormat = SimpleDateFormat("EEE, DD MMM yyyy", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("MMM DD, yyyy", Locale.getDefault())
         return when (from) {
             is Error -> Error(from.throwable)
             is Success -> {
@@ -32,7 +37,7 @@ class ArticleDtoToArticle @Inject constructor() :
                         title = it.title ?: "",
                         author = it.author ?: "",
                         link = it.link ?: "",
-                        pubDate = it.pubDate ?: "",
+                        pubDate = it.pubDate?.convertDate(inputFormat, outputFormat) ?: "",
                         description = it.description ?: "",
                         content = it.content ?: "",
                         imageUrl = it.image ?: "",
