@@ -17,8 +17,15 @@ android {
 }
 
 dependencies {
-    implementation project(":ui-resources")
     implementation project(":base-android")
+    implementation project(":base")
+
+    implementation project(":ui-resources")
+    implementation project(":ui-components")
+
+    implementation project(":data")
+
+    implementation project(":rss-parser")
 
     implementation Libs.Kotlin.stdlib
     implementation Libs.Google.material
