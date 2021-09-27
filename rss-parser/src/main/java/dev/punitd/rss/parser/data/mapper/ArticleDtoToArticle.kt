@@ -10,6 +10,7 @@ import javax.inject.Inject
 class ArticleDtoToArticle @Inject constructor() :
     Mapper<Result<Channel>, Result<dev.punitd.data.Channel>> {
 
+    @Suppress("ComplexMethod")
     override suspend fun map(from: Result<Channel>): Result<dev.punitd.data.Channel> {
         return when (from) {
             is Error -> Error(from.throwable)
