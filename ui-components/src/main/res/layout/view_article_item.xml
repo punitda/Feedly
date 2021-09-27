@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?android:attr/colorBackground">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/article_image"
         android:layout_width="@dimen/grid_20"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/grid_20"
+        android:layout_marginTop="@dimen/grid_4"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/content_guideline"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearance="@style/Widget.Feedly.CornerCutImageView" />
 
@@ -66,10 +68,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/grid_2"
-        android:layout_marginBottom="@dimen/grid_2"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/pub_date"
         app:layout_constraintTop_toBottomOf="@+id/pub_date" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/grid_0_5"
+        android:layout_marginTop="@dimen/grid_2"
+        android:layout_marginBottom="@dimen/grid_2"
+        android:background="?attr/colorBackgroundFloating"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/category_carousel"
+        app:layout_constraintTop_toBottomOf="@+id/category_carousel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
