@@ -6,4 +6,8 @@
     <string name="feed_screen_name">Feed</string>
     <string name="bookmarks_screen_name">Bookmarks</string>
     <string name="settings_screen_name">Settings</string>
+
+    <!-- Section Headers -->
+    <string name="placeholder_section_header">ADD SECTION HEADER</string>
+    <string name="articles_section_header">ARTICLES</string>
 </resources>

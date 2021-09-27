@@ -8,6 +8,7 @@ kapt {
 dependencies {
     implementation project(":ui-resources")
     implementation project(":data")
+    implementation project(":base-android")
 
     implementation Libs.Google.material
     implementation Libs.AndroidX.appCompat
