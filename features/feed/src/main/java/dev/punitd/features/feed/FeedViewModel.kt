@@ -16,9 +16,9 @@ class FeedViewModel @Inject constructor(
     private val channelUseCase: GetChannelUseCase
 ) : ViewModel() {
 
-    private val _viewState: MutableStateFlow<FeedViewState> =
-        MutableStateFlow(FeedViewState.Loading)
-    val viewState: Flow<FeedViewState> = _viewState
+    private val viewState: MutableStateFlow<FeedViewState> = MutableStateFlow(FeedViewState.Loading)
+
+    fun bind() = viewState as Flow<FeedViewState>
 
     fun fetchArticles(url: String) {
         viewModelScope.launch {
@@ -40,7 +40,7 @@ class FeedViewModel @Inject constructor(
     }
 
     private fun setState(reducer: FeedViewState.() -> FeedViewState) {
-        val newState = _viewState.value.reducer()
-        _viewState.value = newState
+        val newState = viewState.value.reducer()
+        viewState.value = newState
     }
 }

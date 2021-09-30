@@ -46,7 +46,7 @@ class FeedFragment : Fragment() {
 
     private fun observeViewStates() {
         launchAndRepeatWithLifeCycle {
-            viewModel.viewState.collect { state ->
+            viewModel.bind().collect { state ->
                 when (state) {
                     is FeedViewState.Error -> {
                         binding.loader.visibility = View.GONE
