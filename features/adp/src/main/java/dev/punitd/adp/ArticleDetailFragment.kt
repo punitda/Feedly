@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import coil.load
@@ -39,7 +40,6 @@ class ArticleDetailFragment : Fragment() {
     private fun setUpUI() {
         binding.apply {
             article?.let {
-
                 detailImage.load(it.imageUrl) {
                     placeholder(R.drawable.image_place_holder)
                     error(R.drawable.image_place_holder)
@@ -50,7 +50,16 @@ class ArticleDetailFragment : Fragment() {
                 articePubDate.text = it.pubDate
 
                 articleContent.text = HtmlCompat.fromHtml(it.content, FROM_HTML_MODE_LEGACY)
+
+                toolbarLayout.title = it.title
             }
+
+            articleDetailScrollView.setOnScrollChangeListener(
+                NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
+                    val shouldShowCollapsedTitle = scrollY > toolbar.height
+                    toolbarLayout.isTitleEnabled = shouldShowCollapsedTitle
+                }
+            )
 
             toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
         }

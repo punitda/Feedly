@@ -64,4 +64,8 @@
         <item name="cornerSizeBottomRight">@dimen/grid_0</item>
     </style>
 
+    <style name="TextAppearance.Feedly.Toolbar.Text" parent="TextAppearance.Feedly.Subtitle1" >
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
 </resources>
