@@ -7,4 +7,5 @@
     <include app:graph="@navigation/feed_graph"/>
     <include app:graph="@navigation/bookmarks_graph"/>
     <include app:graph="@navigation/settings_graph"/>
+    <include app:graph="@navigation/adp_graph"/>
 </navigation>
