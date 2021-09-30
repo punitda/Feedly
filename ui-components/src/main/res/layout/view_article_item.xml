@@ -64,14 +64,6 @@
         app:layout_constraintVertical_bias="0.0"
         tools:text="July 24" />
 
-    <com.airbnb.epoxy.Carousel
-        android:id="@+id/category_carousel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/grid_2"
-        app:layout_constraintLeft_toLeftOf="@+id/pub_date"
-        app:layout_constraintTop_toBottomOf="@+id/pub_date" />
-
     <View
         android:id="@+id/divider"
         android:layout_width="wrap_content"
@@ -80,8 +72,8 @@
         android:layout_marginBottom="@dimen/grid_2"
         android:background="?attr/colorBackgroundFloating"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/category_carousel"
-        app:layout_constraintTop_toBottomOf="@+id/category_carousel" />
+        app:layout_constraintLeft_toLeftOf="@+id/pub_date"
+        app:layout_constraintTop_toBottomOf="@+id/pub_date" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
