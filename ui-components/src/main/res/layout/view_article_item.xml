@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/colorBackground">
+    android:background="?android:attr/colorBackground"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    tools:ignore="UnusedAttribute">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/article_image"
@@ -68,7 +72,7 @@
         android:id="@+id/divider"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/grid_0_5"
-        android:layout_marginTop="@dimen/grid_2"
+        android:layout_marginTop="@dimen/grid_4"
         android:layout_marginBottom="@dimen/grid_2"
         android:background="?attr/colorBackgroundFloating"
         app:layout_constraintBottom_toBottomOf="parent"
