@@ -6,6 +6,7 @@ data class Channel(
     val description: String? = null,
     val image: Image? = null,
     val articles: List<Article> = emptyList(),
+    val isSelected: Boolean = false,
 ) {
     data class Image(
         val title: String,
