@@ -31,7 +31,7 @@ class FeedViewModel @Inject constructor(
         getFeedUrls()
     }
 
-    private fun getFeedUrls() {
+    fun getFeedUrls() {
         viewModelScope.launch {
             when (val result = channelsListUseCase.execute()) {
                 is Error -> {

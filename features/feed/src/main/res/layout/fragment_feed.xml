@@ -20,6 +20,23 @@
         app:titleTextAppearance="?attr/textAppearanceSubtitle1"
         app:titleTextColor="?attr/colorOnPrimary" />
 
+    <Button
+        android:id="@+id/channel_select_btn"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/grid_2"
+        android:ellipsize="end"
+        android:insetTop="@dimen/grid_0"
+        android:insetBottom="@dimen/grid_0"
+        android:maxLines="1"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="The Economist" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="0dp"

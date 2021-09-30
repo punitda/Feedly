@@ -46,9 +46,16 @@ class FeedFragment : Fragment(), ChannelsListController.AdapterCallbacks {
     }
 
     private fun setUpUI() {
-        binding.rv.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = controller.adapter
+        binding.apply {
+            rv.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = controller.adapter
+            }
+
+            channelSelectBtn.setOnClickListener {
+                channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                viewModel.getFeedUrls()
+            }
         }
 
         setUpChannelDrawer()
@@ -106,7 +113,8 @@ class FeedFragment : Fragment(), ChannelsListController.AdapterCallbacks {
                         is ChannelsListViewState.Success -> {
                             if (!viewModel.isChannelSelected()) {
                                 binding.channelDrawer.intermediateLoader.visibility = View.GONE
-                                channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                                channelsBottomSheetBehavior.state =
+                                    BottomSheetBehavior.STATE_EXPANDED
                                 channelListController.setData(state.channels)
                             }
                         }
@@ -118,7 +126,8 @@ class FeedFragment : Fragment(), ChannelsListController.AdapterCallbacks {
 
     override fun onChannelSelected(channel: Channel) {
         viewModel.selectChannel(channel)
-        channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         viewModel.fetchArticles(channel.link)
+        channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        binding.channelSelectBtn.text = channel.title
     }
 }
