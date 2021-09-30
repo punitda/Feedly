@@ -4,26 +4,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import dev.punitd.base.android.extensions.launchAndRepeatWithLifeCycle
 import dev.punitd.base.android.extensions.viewBinding
+import dev.punitd.data.Channel
+import dev.punitd.features.ChannelsListController
+import dev.punitd.features.ChannelsListViewState
 import dev.punitd.features.feed.databinding.FragmentFeedBinding
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FeedFragment : Fragment() {
+class FeedFragment : Fragment(), ChannelsListController.AdapterCallbacks {
+
+    companion object {
+        const val PEEK_HEIGHT_RATIO = 0.70
+    }
 
     private val binding by viewBinding(FragmentFeedBinding::inflate)
     private val viewModel: FeedViewModel by viewModels()
     private val controller = FeedController()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.fetchArticles("https://medium.com/feed/backchannel")
-    }
+    private lateinit var channelsBottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+    private val channelListController = ChannelsListController(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,24 +50,75 @@ class FeedFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = controller.adapter
         }
+
+        setUpChannelDrawer()
+    }
+
+    private fun setUpChannelDrawer() {
+        channelsBottomSheetBehavior =
+            BottomSheetBehavior.from(binding.channelDrawer.channelSelectionBottomSheet)
+        channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        val peekHeight =
+            (requireActivity().window.decorView.measuredHeight * PEEK_HEIGHT_RATIO).toInt()
+        channelsBottomSheetBehavior.peekHeight = peekHeight
+
+        binding.channelDrawer.channelsRv.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = channelListController.adapter
+        }
     }
 
     private fun observeViewStates() {
         launchAndRepeatWithLifeCycle {
-            viewModel.bind().collect { state ->
-                when (state) {
-                    is FeedViewState.Error -> {
-                        binding.loader.visibility = View.GONE
+            launch {
+                viewModel.bind().collect { state ->
+                    when (state) {
+                        FeedViewState.Initial -> {
+                            // Do nothing
+                        }
+                        FeedViewState.Loading -> {
+                            binding.loader.visibility = View.VISIBLE
+                            controller.setData(null)
+                        }
+                        is FeedViewState.Error -> {
+                            binding.loader.visibility = View.GONE
+                            controller.setData(null)
+                        }
+                        is FeedViewState.Success -> {
+                            binding.loader.visibility = View.GONE
+                            controller.setData(state.channel)
+                        }
                     }
-                    FeedViewState.Loading -> {
-                        binding.loader.visibility = View.VISIBLE
-                    }
-                    is FeedViewState.Success -> {
-                        binding.loader.visibility = View.GONE
-                        controller.setData(state.channel)
+                }
+            }
+
+            launch {
+                viewModel.bindChannelsList().collect { state ->
+                    when (state) {
+                        ChannelsListViewState.Initial -> {
+                            channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                            binding.channelDrawer.intermediateLoader.visibility = View.VISIBLE
+                        }
+                        is ChannelsListViewState.Error -> {
+                            channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                            binding.channelDrawer.intermediateLoader.visibility = View.GONE
+                        }
+                        is ChannelsListViewState.Success -> {
+                            if (!viewModel.isChannelSelected()) {
+                                binding.channelDrawer.intermediateLoader.visibility = View.GONE
+                                channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                                channelListController.setData(state.channels)
+                            }
+                        }
                     }
                 }
             }
         }
+    }
+
+    override fun onChannelSelected(channel: Channel) {
+        viewModel.selectChannel(channel)
+        channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        viewModel.fetchArticles(channel.link)
     }
 }

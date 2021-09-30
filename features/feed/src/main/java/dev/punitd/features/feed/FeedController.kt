@@ -10,9 +10,11 @@ import dev.punitd.ui.components.view.sectionHeader
 
 class FeedController : TypedEpoxyController<Channel>() {
 
-    override fun buildModels(channel: Channel) {
-        addChannelInfo(channel)
-        addArticles(channel.articles)
+    override fun buildModels(channel: Channel?) {
+        channel?.let {
+            addChannelInfo(it)
+            addArticles(it.articles)
+        }
     }
 
     private fun addChannelInfo(channel: Channel) {
