@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import dev.punitd.base.android.extensions.launchAndRepeatWithLifeCycle
 import dev.punitd.base.android.extensions.viewBinding
+import dev.punitd.data.Article
 import dev.punitd.data.Channel
 import dev.punitd.features.ChannelsListController
 import dev.punitd.features.ChannelsListViewState
@@ -20,7 +23,10 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FeedFragment : Fragment(), ChannelsListController.AdapterCallbacks {
+class FeedFragment :
+    Fragment(),
+    FeedController.AdapterCallbacks,
+    ChannelsListController.AdapterCallbacks {
 
     companion object {
         const val PEEK_HEIGHT_RATIO = 0.70
@@ -28,7 +34,7 @@ class FeedFragment : Fragment(), ChannelsListController.AdapterCallbacks {
 
     private val binding by viewBinding(FragmentFeedBinding::inflate)
     private val viewModel: FeedViewModel by viewModels()
-    private val controller = FeedController()
+    private val controller = FeedController(this)
 
     private lateinit var channelsBottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private val channelListController = ChannelsListController(this)
@@ -122,6 +128,11 @@ class FeedFragment : Fragment(), ChannelsListController.AdapterCallbacks {
                 }
             }
         }
+    }
+
+    override fun onArticleClicked(article: Article) {
+        val bundle = bundleOf("Article" to article)
+        findNavController().navigate(R.id.action_to_article_detail, bundle)
     }
 
     override fun onChannelSelected(channel: Channel) {

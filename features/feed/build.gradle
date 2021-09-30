@@ -24,6 +24,7 @@ dependencies {
     implementation project(":ui-components")
 
     implementation project(":data")
+    implementation project(":features:adp")
 
     implementation project(":rss-parser")
 

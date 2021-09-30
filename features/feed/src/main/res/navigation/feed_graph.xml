@@ -9,6 +9,25 @@
         android:id="@+id/feedDest"
         android:name="dev.punitd.features.feed.FeedFragment"
         android:label="Feed Screen"
-        tools:layout="@layout/fragment_feed" />
+        tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/action_to_article_detail"
+            app:destination="@+id/adpDest" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/adpDest"
+        android:name="dev.punitd.adp.ArticleDetailFragment"
+        android:label="Article Detail Screen"
+        tools:layout="@layout/fragment_article_detail">
+
+        <argument
+            android:name="article"
+            android:defaultValue="@null"
+            app:argType="dev.punitd.data.Article"
+            app:nullable="true" />
+
+    </fragment>
 
 </navigation>

@@ -7,7 +7,12 @@ import dev.punitd.ui.components.view.articleItemView
 import dev.punitd.ui.components.view.channelInfoView
 import dev.punitd.ui.components.view.sectionHeader
 
-class FeedController : TypedEpoxyController<Channel>() {
+class FeedController(private val adapterCallbacks: AdapterCallbacks) :
+    TypedEpoxyController<Channel>() {
+
+    interface AdapterCallbacks {
+        fun onArticleClicked(article: Article)
+    }
 
     override fun buildModels(channel: Channel?) {
         channel?.let {
@@ -34,6 +39,11 @@ class FeedController : TypedEpoxyController<Channel>() {
                 articleItemView {
                     id(it.guid)
                     article(it)
+                    clickListener { model, _, _, _ ->
+                        this@FeedController
+                            .adapterCallbacks
+                            .onArticleClicked(model.article())
+                    }
                 }
             }
         }

@@ -3,6 +3,7 @@ package dev.punitd.ui.components.view
 import android.view.View
 import coil.load
 import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyAttribute.Option.DoNotHash
 import com.airbnb.epoxy.EpoxyHolder
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
@@ -17,6 +18,9 @@ abstract class ArticleItemView : EpoxyModelWithHolder<ArticleItemHolder>() {
     @EpoxyAttribute
     lateinit var article: Article
 
+    @EpoxyAttribute(DoNotHash)
+    lateinit var clickListener: View.OnClickListener
+
     override fun getDefaultLayout() = R.layout.view_article_item
 
     override fun bind(holder: ArticleItemHolder) {
@@ -30,6 +34,8 @@ abstract class ArticleItemView : EpoxyModelWithHolder<ArticleItemHolder>() {
             articleTitle.text = article.title
             authorName.text = article.author
             pubDate.text = article.pubDate
+
+            root.setOnClickListener(clickListener)
         }
     }
 

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
+import androidx.navigation.fragment.findNavController
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import dev.punitd.adp.databinding.FragmentArticleDetailBinding
@@ -18,12 +18,11 @@ import dev.punitd.data.Article
 class ArticleDetailFragment : Fragment() {
 
     private val binding by viewBinding(FragmentArticleDetailBinding::inflate)
-    private val args: ArticleDetailFragmentArgs by navArgs()
     private var article: Article? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        article = args.article
+        article = arguments?.getParcelable("Article")
     }
 
     override fun onCreateView(
@@ -52,6 +51,8 @@ class ArticleDetailFragment : Fragment() {
 
                 articleContent.text = HtmlCompat.fromHtml(it.content, FROM_HTML_MODE_LEGACY)
             }
+
+            toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
         }
     }
 }
