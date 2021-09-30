@@ -1,0 +1,40 @@
+apply from: "$rootProject.projectDir/android-library.gradle"
+apply plugin : 'kotlin-kapt'
+apply plugin : 'dagger.hilt.android.plugin'
+apply plugin : "androidx.navigation.safeargs.kotlin"
+
+kapt {
+    correctErrorTypes true
+}
+
+android {
+    hilt {
+        enableExperimentalClasspathAggregation = true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    implementation project(":base-android")
+    implementation project(":base")
+
+    implementation project(":ui-resources")
+    implementation project(":data")
+
+    implementation Libs.Kotlin.stdlib
+    implementation Libs.Google.material
+    implementation Libs.AndroidX.appCompat
+    implementation Libs.AndroidX.constraintLayout
+
+    implementation Libs.AndroidX.Navigation.fragment
+    implementation Libs.AndroidX.Navigation.ui
+    implementation Libs.AndroidX.Navigation.runtime
+
+    implementation Libs.AndroidX.Hilt.library
+    kapt Libs.AndroidX.Hilt.compiler
+
+    implementation Libs.Coil.library
+}
