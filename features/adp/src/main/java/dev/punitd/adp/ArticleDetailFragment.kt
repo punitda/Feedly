@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
+import androidx.core.view.isGone
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -65,6 +66,7 @@ class ArticleDetailFragment : Fragment() {
                 NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
                     val shouldShowCollapsedTitle = scrollY > toolbar.height
                     toolbarLayout.isTitleEnabled = shouldShowCollapsedTitle
+                    bookmarkBtn.isGone = shouldShowCollapsedTitle
                 }
             )
 
