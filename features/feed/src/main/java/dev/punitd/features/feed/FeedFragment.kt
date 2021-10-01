@@ -99,6 +99,7 @@ class FeedFragment :
                         }
                         is FeedViewState.Success -> {
                             binding.loader.visibility = View.GONE
+                            binding.channelSelectBtn.text = state.channel.title
                             controller.setData(state.channel)
                         }
                     }
@@ -109,11 +110,11 @@ class FeedFragment :
                 viewModel.bindChannelsList().collect { state ->
                     when (state) {
                         ChannelsListViewState.Initial -> {
-                            channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                            channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
                             binding.channelDrawer.intermediateLoader.visibility = View.VISIBLE
                         }
                         is ChannelsListViewState.Error -> {
-                            channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                            channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
                             binding.channelDrawer.intermediateLoader.visibility = View.GONE
                         }
                         is ChannelsListViewState.Success -> {
@@ -122,7 +123,6 @@ class FeedFragment :
                                 channelListController.setData(state.channels)
                                 val channel = state.channels.first()
                                 viewModel.fetchArticles(channel.link)
-                                binding.channelSelectBtn.text = channel.title
                             }
                         }
                     }
