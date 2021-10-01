@@ -60,7 +60,7 @@ class FeedFragment :
 
             channelSelectBtn.setOnClickListener {
                 channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                viewModel.getFeedUrls()
+                viewModel.getChannels()
             }
         }
 
@@ -119,9 +119,10 @@ class FeedFragment :
                         is ChannelsListViewState.Success -> {
                             if (!viewModel.isChannelSelected()) {
                                 binding.channelDrawer.intermediateLoader.visibility = View.GONE
-                                channelsBottomSheetBehavior.state =
-                                    BottomSheetBehavior.STATE_EXPANDED
                                 channelListController.setData(state.channels)
+                                val channel = state.channels.first()
+                                viewModel.fetchArticles(channel.link)
+                                binding.channelSelectBtn.text = channel.title
                             }
                         }
                     }

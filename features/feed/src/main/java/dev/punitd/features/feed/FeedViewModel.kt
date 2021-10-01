@@ -7,8 +7,8 @@ import dev.punitd.base.data.Error
 import dev.punitd.base.data.Success
 import dev.punitd.data.Channel
 import dev.punitd.features.ChannelsListViewState
+import dev.punitd.features.feed.domain.usecase.GetSavedChannelsUseCase
 import dev.punitd.rss.parser.domain.usecase.GetChannelUseCase
-import dev.punitd.rss.parser.domain.usecase.GetChannelsListUseCase
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class FeedViewModel @Inject constructor(
     private val channelUseCase: GetChannelUseCase,
-    private val channelsListUseCase: GetChannelsListUseCase,
+    private val getSavedChannelsUseCase: GetSavedChannelsUseCase,
 ) : ViewModel() {
 
     private val viewState: MutableStateFlow<FeedViewState> = MutableStateFlow(FeedViewState.Initial)
@@ -28,28 +28,13 @@ class FeedViewModel @Inject constructor(
     fun bindChannelsList() = channelsListState as Flow<ChannelsListViewState>
 
     init {
-        getFeedUrls()
+        getChannels()
     }
 
-    fun getFeedUrls() {
+    fun getChannels() {
         viewModelScope.launch {
-            when (val result = channelsListUseCase.execute()) {
-                is Error -> {
-                    setChannelsState {
-                        ChannelsListViewState.Error(
-                            result.throwable.message
-                                ?: "Unable to fetch list of feeds. Please try again!"
-                        )
-                    }
-                }
-                is Success -> {
-                    setChannelsState {
-                        ChannelsListViewState.Success(
-                            channels = result.data,
-                        )
-                    }
-                }
-            }
+            val channels = getSavedChannelsUseCase.execute()
+            channelsListState.value = ChannelsListViewState.Success(channels = channels)
         }
     }
 
