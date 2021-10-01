@@ -9,5 +9,24 @@
         android:id="@+id/bookmarksDest"
         android:name="dev.punitd.bookmark.BookmarksFragment"
         android:label="Bookmarks Screen"
-        tools:layout="@layout/fragment_bookmarks" />
+        tools:layout="@layout/fragment_bookmarks">
+        <action
+            android:id="@+id/action_to_article_detail"
+            app:destination="@+id/adpDest" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/adpDest"
+        android:name="dev.punitd.adp.ArticleDetailFragment"
+        android:label="Article Detail Screen"
+        tools:layout="@layout/fragment_article_detail">
+
+        <argument
+            android:name="article"
+            android:defaultValue="@null"
+            app:argType="dev.punitd.data.Article"
+            app:nullable="true" />
+
+    </fragment>
 </navigation>
