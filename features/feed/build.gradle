@@ -26,6 +26,8 @@ dependencies {
     implementation project(":data")
     implementation project(":features:adp")
 
+    implementation project(":core:persistence")
+
     implementation project(":rss-parser")
 
     implementation Libs.Kotlin.stdlib
