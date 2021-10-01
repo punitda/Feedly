@@ -12,8 +12,11 @@ interface BookmarkDao {
     fun getAllBookmarks(): Flow<List<BookmarkedArticle>>
 
     @Query("SELECT * FROM bookmarkedarticle WHERE guid = :id")
-    fun getBookmarkById(id: String): List<BookmarkedArticle>
+    suspend fun getBookmarkById(id: String): List<BookmarkedArticle>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertBookmark(bookmarkedArticle: BookmarkedArticle)
+    suspend fun insertBookmark(bookmarkedArticle: BookmarkedArticle)
+
+    @Query("DELETE FROM bookmarkedarticle WHERE guid = :id")
+    suspend fun removeBookmark(id: String)
 }
