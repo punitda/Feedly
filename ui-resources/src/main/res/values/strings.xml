@@ -11,4 +11,7 @@
     <string name="placeholder_section_header">ADD SECTION HEADER</string>
     <string name="articles_section_header">ARTICLES</string>
     <string name="channel_selection_section_header">Select Channel</string>
+
+    <!-- Messages -->
+    <string name="no_bookmarks">Uh-oh! Nothing Bookmarked yet! \nLet\'s Go!</string>
 </resources>
