@@ -108,6 +108,14 @@ libs.OkHttp = [
     loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.okhttp",
 ]
 
+// Database
+versions.room = "2.3.0"
+libs.Room = [
+    library: "androidx.room:room-runtime:$versions.room",
+    compiler: "androidx.room:room-compiler:$versions.room",
+    ktx: "androidx.room:room-ktx:$versions.room"
+]
+
 // Image loading
 versions.coil = "1.2.2"
 libs.Coil = [
