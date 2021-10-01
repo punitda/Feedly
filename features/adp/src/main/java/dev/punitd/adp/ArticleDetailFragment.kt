@@ -4,26 +4,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import dev.punitd.adp.databinding.FragmentArticleDetailBinding
+import dev.punitd.base.android.extensions.launchAndRepeatWithLifeCycle
 import dev.punitd.base.android.extensions.viewBinding
 import dev.punitd.data.Article
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class ArticleDetailFragment : Fragment() {
 
     private val binding by viewBinding(FragmentArticleDetailBinding::inflate)
+    private val viewModel: ArticleDetailViewModel by viewModels()
     private var article: Article? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         article = arguments?.getParcelable("Article")
+        viewModel.checkIfBookmarked(article?.guid ?: "")
     }
 
     override fun onCreateView(
@@ -35,6 +41,7 @@ class ArticleDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpUI()
+        observeViewStates()
     }
 
     private fun setUpUI() {
@@ -62,6 +69,34 @@ class ArticleDetailFragment : Fragment() {
             )
 
             toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+
+            bookmarkBtn.setOnClickListener {
+                article?.let { viewModel.toggleBookmark(it) }
+            }
+        }
+    }
+
+    private fun observeViewStates() {
+        launchAndRepeatWithLifeCycle {
+            viewModel.bind().collect { isBookmarked ->
+                binding.apply {
+                    if (isBookmarked) {
+                        bookmarkBtn.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                bookmarkBtn.context,
+                                R.drawable.ic_bookmarked
+                            )
+                        )
+                    } else {
+                        bookmarkBtn.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                bookmarkBtn.context,
+                                R.drawable.ic_bookmark
+                            )
+                        )
+                    }
+                }
+            }
         }
     }
 }

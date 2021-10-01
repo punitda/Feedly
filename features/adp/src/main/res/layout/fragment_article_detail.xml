@@ -20,11 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:statusBarScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:collapsedTitleTextAppearance="@style/TextAppearance.Feedly.Toolbar.Text"
             app:collapsedTitleGravity="center"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.Feedly.Toolbar.Text"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:statusBarScrim="?attr/colorPrimary"
             app:titleEnabled="false">
 
             <ImageView
@@ -51,12 +51,23 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bookmark_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/grid_4"
+        android:src="@drawable/ic_bookmark"
+        app:layout_anchor="@+id/toolbar_layout"
+        app:layout_anchorGravity="bottom|right"
+        app:tint="?attr/colorSecondaryVariant"
+        tools:ignore="ContentDescription" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/article_detail_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:paddingBottom="@dimen/grid_12">
+        android:paddingBottom="@dimen/grid_12"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
