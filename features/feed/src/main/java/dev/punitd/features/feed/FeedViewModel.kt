@@ -6,7 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.punitd.base.data.Error
 import dev.punitd.base.data.Success
 import dev.punitd.data.Channel
-import dev.punitd.features.ChannelsListViewState
 import dev.punitd.features.feed.domain.usecase.GetSavedChannelsUseCase
 import dev.punitd.rss.parser.domain.usecase.GetChannelUseCase
 import javax.inject.Inject
@@ -16,29 +15,43 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class FeedViewModel @Inject constructor(
+    // Gets Article + Channel Info for selected channel
     private val channelUseCase: GetChannelUseCase,
+    // Gets All Channels saved in local DB
     private val getSavedChannelsUseCase: GetSavedChannelsUseCase,
 ) : ViewModel() {
 
     private val viewState: MutableStateFlow<FeedViewState> = MutableStateFlow(FeedViewState.Initial)
-    private val channelsListState: MutableStateFlow<ChannelsListViewState> =
-        MutableStateFlow(ChannelsListViewState.Initial)
-
     fun bind() = viewState as Flow<FeedViewState>
-    fun bindChannelsList() = channelsListState as Flow<ChannelsListViewState>
+
+    private val channelsListState: MutableStateFlow<List<Channel>> = MutableStateFlow(emptyList())
+    fun bindChannelsList() = channelsListState as Flow<List<Channel>>
 
     init {
-        getChannels()
+        getSavedChannels()
     }
 
-    fun getChannels() {
-        viewModelScope.launch {
-            val channels = getSavedChannelsUseCase.execute()
-            channelsListState.value = ChannelsListViewState.Success(channels = channels)
+    fun switchChannel(channel: Channel) {
+        // Only switch if channel selected is different
+        if (channelsListState.value.find { it.isSelected }?.title != channel.title) {
+            fetchArticles(channel.link)
+            selectChannel(channel)
         }
     }
 
-    fun fetchArticles(url: String) {
+    private fun getSavedChannels() {
+        viewModelScope.launch {
+            val channels = getSavedChannelsUseCase.execute()
+            channelsListState.value = channels
+
+            // By default we will show first channel
+            // added by user for first time screen is opened.
+            val defaultChannel = channels.first()
+            switchChannel(defaultChannel)
+        }
+    }
+
+    private fun fetchArticles(url: String) {
         viewModelScope.launch {
             setState { FeedViewState.Loading }
             when (val result = channelUseCase.execute(url)) {
@@ -58,32 +71,19 @@ class FeedViewModel @Inject constructor(
         }
     }
 
-    fun selectChannel(channel: Channel) {
-        val currentState = (channelsListState.value as ChannelsListViewState.Success)
-        val updatedChannels = currentState.channels.map {
+    private fun selectChannel(channel: Channel) {
+        val updatedChannels = channelsListState.value.map {
             if (it.title == channel.title) {
                 it.copy(isSelected = true)
             } else {
-                it
+                it.copy(isSelected = false)
             }
         }
-        channelsListState.value = currentState.copy(channels = updatedChannels)
-    }
-
-    fun isChannelSelected(): Boolean {
-        val channel = (channelsListState.value as? ChannelsListViewState.Success)
-            ?.channels
-            ?.firstOrNull { it.isSelected }
-        return channel != null
+        channelsListState.value = updatedChannels
     }
 
     private fun setState(reducer: FeedViewState.() -> FeedViewState) {
         val newState = viewState.value.reducer()
         viewState.value = newState
-    }
-
-    private fun setChannelsState(reducer: ChannelsListViewState.() -> ChannelsListViewState) {
-        val newState = channelsListState.value.reducer()
-        channelsListState.value = newState
     }
 }

@@ -17,7 +17,6 @@ import dev.punitd.base.android.extensions.viewBinding
 import dev.punitd.data.Article
 import dev.punitd.data.Channel
 import dev.punitd.features.ChannelsListController
-import dev.punitd.features.ChannelsListViewState
 import dev.punitd.features.feed.databinding.FragmentFeedBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -51,6 +50,7 @@ class FeedFragment :
         observeViewStates()
     }
 
+    // Bind UI
     private fun setUpUI() {
         binding.apply {
             rv.apply {
@@ -60,7 +60,6 @@ class FeedFragment :
 
             channelSelectBtn.setOnClickListener {
                 channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-                viewModel.getChannels()
             }
         }
 
@@ -81,6 +80,7 @@ class FeedFragment :
         }
     }
 
+    // Subscribe to view states
     private fun observeViewStates() {
         launchAndRepeatWithLifeCycle {
             launch {
@@ -107,38 +107,21 @@ class FeedFragment :
             }
 
             launch {
-                viewModel.bindChannelsList().collect { state ->
-                    when (state) {
-                        ChannelsListViewState.Initial -> {
-                            channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-                            binding.channelDrawer.intermediateLoader.visibility = View.VISIBLE
-                        }
-                        is ChannelsListViewState.Error -> {
-                            channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-                            binding.channelDrawer.intermediateLoader.visibility = View.GONE
-                        }
-                        is ChannelsListViewState.Success -> {
-                            if (!viewModel.isChannelSelected()) {
-                                binding.channelDrawer.intermediateLoader.visibility = View.GONE
-                                channelListController.setData(state.channels)
-                                val channel = state.channels.first()
-                                viewModel.fetchArticles(channel.link)
-                            }
-                        }
-                    }
+                viewModel.bindChannelsList().collect { channels ->
+                    channelListController.setData(channels)
                 }
             }
         }
     }
 
+    // View Callbacks
     override fun onArticleClicked(article: Article) {
         val bundle = bundleOf("Article" to article)
         findNavController().navigate(R.id.action_to_article_detail, bundle)
     }
 
     override fun onChannelSelected(channel: Channel) {
-        viewModel.selectChannel(channel)
-        viewModel.fetchArticles(channel.link)
+        viewModel.switchChannel(channel)
         channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         binding.channelSelectBtn.text = channel.title
     }

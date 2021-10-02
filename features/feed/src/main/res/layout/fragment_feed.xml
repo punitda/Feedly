@@ -14,11 +14,7 @@
         android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/feed_screen_name"
-        app:titleCentered="true"
-        app:titleTextAppearance="?attr/textAppearanceSubtitle1"
-        app:titleTextColor="?attr/colorOnPrimary" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/channel_select_btn"
