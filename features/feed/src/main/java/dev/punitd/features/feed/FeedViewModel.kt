@@ -21,7 +21,7 @@ class FeedViewModel @Inject constructor(
     private val getSavedChannelsUseCase: GetSavedChannelsUseCase,
 ) : ViewModel() {
 
-    private val viewState: MutableStateFlow<FeedViewState> = MutableStateFlow(FeedViewState.Initial)
+    private val viewState: MutableStateFlow<FeedViewState> = MutableStateFlow(FeedViewState.Loading)
     fun bind() = viewState as Flow<FeedViewState>
 
     private val channelsListState: MutableStateFlow<List<Channel>> = MutableStateFlow(emptyList())
@@ -34,9 +34,14 @@ class FeedViewModel @Inject constructor(
     fun switchChannel(channel: Channel) {
         // Only switch if channel selected is different
         if (channelsListState.value.find { it.isSelected }?.title != channel.title) {
-            fetchArticles(channel.link)
             selectChannel(channel)
+            fetchArticles(channel.link)
         }
+    }
+
+    fun refetchChannel() {
+        val selectedChannel = channelsListState.value.find { it.isSelected }
+        selectedChannel?.let { fetchArticles(it.link) }
     }
 
     private fun getSavedChannels() {

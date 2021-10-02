@@ -15,4 +15,7 @@
     <!-- Messages -->
     <string name="no_bookmarks">Uh-oh! Nothing Bookmarked yet! \nLet\'s Go!</string>
     <string name="choose_topics_that_interest_you">Choose Channels that interest you</string>
+
+    <!-- CTAs -->
+    <string name="try_again">Try Again</string>
 </resources>

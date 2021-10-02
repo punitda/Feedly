@@ -56,6 +56,10 @@
         tools:visibility="visible" />
 
     <include
+        android:id="@+id/error_container"
+        layout="@layout/layout_error_message" />
+
+    <include
         android:id="@+id/channel_drawer"
         layout="@layout/layout_feed_selection_bottom_sheet" />
 

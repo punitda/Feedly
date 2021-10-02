@@ -61,6 +61,10 @@ class FeedFragment :
             channelSelectBtn.setOnClickListener {
                 channelsBottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             }
+
+            errorContainer.retryButton.setOnClickListener {
+                viewModel.refetchChannel()
+            }
         }
 
         setUpChannelDrawer()
@@ -86,19 +90,20 @@ class FeedFragment :
             launch {
                 viewModel.bind().collect { state ->
                     when (state) {
-                        FeedViewState.Initial -> {
-                            // Do nothing
-                        }
                         FeedViewState.Loading -> {
                             binding.loader.visibility = View.VISIBLE
+                            binding.errorContainer.root.visibility = View.GONE
                             controller.setData(null)
                         }
                         is FeedViewState.Error -> {
                             binding.loader.visibility = View.GONE
+                            binding.errorContainer.root.visibility = View.VISIBLE
+                            binding.errorContainer.message.text = state.message
                             controller.setData(null)
                         }
                         is FeedViewState.Success -> {
                             binding.loader.visibility = View.GONE
+                            binding.errorContainer.root.visibility = View.GONE
                             binding.channelSelectBtn.text = state.channel.title
                             controller.setData(state.channel)
                         }
