@@ -6,19 +6,12 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dev.punitd.feedly.onboarding.domain.usecase.GetPrefilledChannelsUseCase
 import dev.punitd.feedly.onboarding.domain.usecase.GetPrefilledChannelsUseCaseImpl
-import dev.punitd.feedly.onboarding.domain.usecase.GetSavedChannelsUseCase
-import dev.punitd.feedly.onboarding.domain.usecase.GetSavedChannelsUseCaseImpl
 import dev.punitd.feedly.onboarding.domain.usecase.SaveChannelUseCase
 import dev.punitd.feedly.onboarding.domain.usecase.SaveChannelUseCaseImpl
 
 @InstallIn(ViewModelComponent::class)
 @Module
 abstract class OnboardingModule {
-
-    @Binds
-    abstract fun provideGetSavedChannelsUseCase(
-        getSavedChannelsUseCase: GetSavedChannelsUseCaseImpl
-    ): GetSavedChannelsUseCase
 
     @Binds
     abstract fun provideGetPrefilledChannelsUseCase(

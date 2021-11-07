@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.punitd.data.Channel
+import dev.punitd.domain.usecase.GetSavedChannelsUseCase
 import dev.punitd.feedly.onboarding.domain.usecase.GetPrefilledChannelsUseCase
-import dev.punitd.feedly.onboarding.domain.usecase.GetSavedChannelsUseCase
 import dev.punitd.feedly.onboarding.domain.usecase.SaveChannelUseCase
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow

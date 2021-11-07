@@ -1,4 +1,4 @@
-package dev.punitd.features.feed.domain.mapper
+package dev.punitd.domain.mapper
 
 import dev.punitd.base.Mapper
 import dev.punitd.persistence.database.Channel
