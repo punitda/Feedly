@@ -80,6 +80,7 @@ dependencies {
   implementation project(":features:adp")
 
   implementation project(":core:persistence")
+  implementation project(":core:domain")
 
   implementation Libs.Kotlin.stdlib
 

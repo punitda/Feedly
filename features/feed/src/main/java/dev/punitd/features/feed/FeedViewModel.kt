@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.punitd.base.data.Error
 import dev.punitd.base.data.Success
 import dev.punitd.data.Channel
-import dev.punitd.features.feed.domain.usecase.GetSavedChannelsUseCase
+import dev.punitd.domain.usecase.GetSavedChannelsUseCase
 import dev.punitd.rss.parser.domain.usecase.GetChannelUseCase
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow

@@ -1,7 +1,11 @@
-package dev.punitd.feedly.onboarding.domain.usecase
+package dev.punitd.domain.usecase
 
 import dev.punitd.data.Channel
 import javax.inject.Inject
+
+interface GetPrefilledChannelsUseCase {
+    suspend fun execute(): List<Channel>
+}
 
 class GetPrefilledChannelsUseCaseImpl @Inject constructor() : GetPrefilledChannelsUseCase {
     override suspend fun execute(): List<Channel> {
