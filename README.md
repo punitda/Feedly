@@ -15,7 +15,13 @@
 ![Architecture Diagram](./screenshots/architecture_diagram.png)
 
 ## App Screenshots
-TBA
+![Onboarding_Screen](./screenshots/onboarding_state_1.png)
+![Onboarding_Screen](./screenshots/onboarding_state_2.png)
+![Home Screen](./screenshots/home_screen.png)
+![Article Details Screen](./screenshots/article_detail_screen.png)
+![Bookmark Screen](./screenshots/bookmark_screen.png)
+![Bookmarked Article](./screenshots/bookmarked_article.png)
+
 ## Libraries
 
 Refer to [Libraries.md](./Libraries.md) file to get details of all the libraries used in the project.
