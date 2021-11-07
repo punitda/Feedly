@@ -17,12 +17,12 @@
 ## App Screenshots
 | Onboarding Screen | Channels Selected  | Home Screen | 
 :------------------:|:------------------:|:------------------:
-![Onboarding_Screen](./screenshots/onboarding_screen.png) | ![Onboarding_Screen](./screenshots/onboarding_screen_channels_selected.png) | ![Home Screen](./screenshots/home_screen.png)
+![](./screenshots/onboarding_screen.png) | ![](./screenshots/onboarding_screen_channels_selected.png) | ![](./screenshots/home_screen.png)
  
 
 | Article Detail Screen | Bookmarked Article | Bookmarks Screen | 
 :----------------------:|:----------------------:|:----------------------:
-![Article Details Screen](./screenshots/article_detail_screen.png) | ![Bookmarked Article](./screenshots/bookmarked_article.png) | ![Bookmarks Screen](./screenshots/bookmarks_screen.png)
+![](./screenshots/article_detail_screen.png) | ![](./screenshots/bookmarked_article.png) | ![](./screenshots/bookmarks_screen.png)
 
 
 ## Libraries
