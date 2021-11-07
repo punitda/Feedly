@@ -1,5 +1,10 @@
 # Feedly - A RSS Reader App
 
+> Note : This isn't a complete functional app. This was just created for explaining some concepts related to Multi-Module Android App architecture to someone.
+> 
+>
+> Feel free to poke around. I'll add missing functionality whenever I get chance. 
+
 
 ## Sections
 - [Architecture Diagram](#architecture-diagram)
