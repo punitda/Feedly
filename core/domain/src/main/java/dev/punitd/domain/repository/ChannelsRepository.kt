@@ -6,6 +6,7 @@ import javax.inject.Inject
 
 interface ChannelsRepository {
     suspend fun getSavedChannels(): List<Channel>
+    suspend fun saveChannel(channel: Channel)
 }
 
 class ChannelsRepositoryImpl @Inject constructor(
@@ -14,5 +15,9 @@ class ChannelsRepositoryImpl @Inject constructor(
 
     override suspend fun getSavedChannels(): List<Channel> {
         return appDatabase.channelDao().getAllChannelsOnce()
+    }
+
+    override suspend fun saveChannel(channel: Channel) {
+        return appDatabase.channelDao().insertChannel(channel)
     }
 }
