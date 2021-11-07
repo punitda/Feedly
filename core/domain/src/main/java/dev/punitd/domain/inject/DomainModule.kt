@@ -6,7 +6,12 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dev.punitd.domain.repository.ChannelsRepository
 import dev.punitd.domain.repository.ChannelsRepositoryImpl
-import dev.punitd.domain.usecase.*
+import dev.punitd.domain.usecase.GetPrefilledChannelsUseCase
+import dev.punitd.domain.usecase.GetPrefilledChannelsUseCaseImpl
+import dev.punitd.domain.usecase.GetSavedChannelsUseCase
+import dev.punitd.domain.usecase.GetSavedChannelsUseCaseImpl
+import dev.punitd.domain.usecase.SaveChannelUseCase
+import dev.punitd.domain.usecase.SaveChannelUseCaseImpl
 
 @InstallIn(ViewModelComponent::class)
 @Module
