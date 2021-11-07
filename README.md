@@ -15,7 +15,7 @@
 ![Architecture Diagram](./screenshots/architecture_diagram.png)
 
 ## App Screenshots
-| Onboarding Screen | Onboarding Screen(Channels Selected)  | Home Screen | 
+| Onboarding Screen | Channels Selected  | Home Screen | 
 :------------------:|:------------------:|:------------------:
 ![Onboarding_Screen](./screenshots/onboarding_screen.png) | ![Onboarding_Screen](./screenshots/onboarding_screen_channels_selected.png) | ![Home Screen](./screenshots/home_screen.png)
  
